@@ -5,6 +5,6 @@ Simple PHP Tools ;)
 
 - Or Such Peachy Treats
 
-- .. anything simple and powerful 
+- .. anything make you happy
 
 When you are bored with packages, and love simply "include and run"
