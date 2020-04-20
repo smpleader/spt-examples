@@ -10,7 +10,7 @@
 
 defined( 'SPT_PATH' ) or die('');
 
-class Log extends baseObj
+class Log extends staticObj
 {
     static protected $_vars = array();
 

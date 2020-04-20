@@ -30,9 +30,14 @@ When you are bored with packages, and love simply "include and run", let try thi
 
 # Examples:
 
-1. Base usage
+1. Base usage: examples/base
 
-2. Simple route
+2. Simple route: examples/router
+
+3. MVC pattern: examples/mvc
+
+4. Format and theme: examples/theme
+
 
 # LICENCE
 

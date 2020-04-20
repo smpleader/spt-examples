@@ -10,16 +10,16 @@
 
 defined( 'SPT_PATH' ) or die('');
 
-class Config extends baseObj
+class Config extends staticObj
 {
     static protected $_vars = array();
 
-    static function init($vars){
+    static function init( $vars ){
         // run once
         if( is_array($vars) && count(self::$_vars) == 0 ){
-            foreach($vars as $key => $val){
-                if( $key != (int)$key){
-                    self::set($key, $vars);
+            foreach($vars as $key => $val){ 
+                if( !is_numeric($key) ){
+                    self::set($key, $val);
                 }
             }
         }

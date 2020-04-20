@@ -10,13 +10,20 @@
 
 defined( 'SPT_PATH' ) or die('');
 
-class baseObj 
+class staticObj 
 {
-    static function set($key, $value){
+    static function set($key, $value)
+    {
         static::$_vars[$key] = $value;
     }
 
-    static function get($key, $default=null){
+    static function get($key, $default = null)
+    {
         return isset(static::$_vars[$key]) ? static::$_vars[$key] : $default;
+    }
+
+    static function getVars()
+    {
+        return static::$_vars;
     }
 }
