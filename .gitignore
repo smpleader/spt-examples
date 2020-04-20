@@ -18,6 +18,8 @@
 /.htaccess
 /web.config
 /.php_cs.cache
+/log
+/logs
 
 # Test Related Files #
 /phpunit.xml
