@@ -34,14 +34,8 @@ $router = Router::_(
     ]
 );
 
-/*Log::add(
-    "<h1>BEFORE Pathfinding:</h1><pre> \n",
-    Router::getVars(),
-    '</pre>'
-);*/
-
 Log::add(
-    "\n<h1>AFTER Pathfinding:</h1> <pre> \n",
+    "\n<h1>BEFORE Pathfinding:</h1> <pre> \n",
     Router::getVars(),
     '</pre>'
 );
