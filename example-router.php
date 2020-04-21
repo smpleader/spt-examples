@@ -34,7 +34,7 @@ $router = Router::_(
 
 Log::add(
     "\n<h1>Test in root folder</h1> <pre> \n",
-    "\n<h2>BEFORE Pathfinding:</h2> <pre> \n",
+    "\n<h2>Router ready:</h2> <pre> \n",
     Router::getVars(),
     '</pre>'
 );

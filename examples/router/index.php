@@ -32,7 +32,7 @@ $router = Router::_(
 );
 
 Log::add(
-    "\n<h1>BEFORE Pathfinding:</h1> <pre> \n",
+    "\n<h1>Router ready:</h1> <pre> \n",
     Router::getVars(),
     '</pre>'
 );
