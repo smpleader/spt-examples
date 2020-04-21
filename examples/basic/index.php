@@ -11,8 +11,6 @@
 define( 'APP_PATH', __DIR__ . '/');
 
 require APP_PATH.'../../src/bootstrap.php';
-require SPT_PATH.'config.php';
-require SPT_PATH.'log.php'; 
 
 
 /**
@@ -22,8 +20,15 @@ require SPT_PATH.'log.php';
 Log::set('key1', 123);
 Config::set('key2', 'something here'); 
 
+$a = [1,2,3];
+$b = &$a;
+$b[] = 5;
+
 Log::add(
+    '<pre>',
     Config::get('key2')
+    ,$a ,$b,
+    '</pre>'
 );
 
 Log::show();

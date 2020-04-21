@@ -11,9 +11,7 @@
 define( 'APP_PATH', __DIR__ . '/');
 
 require APP_PATH.'src/bootstrap.php';
-require SPT_PATH.'config.php';
 require SPT_PATH.'router.php';
-require SPT_PATH.'log.php'; 
 
 Config::init(
     [
@@ -35,13 +33,14 @@ $router = Router::_(
 );
 
 Log::add(
-    "\n<h1>BEFORE Pathfinding:</h1> <pre> \n",
+    "\n<h1>Test in root folder</h1> <pre> \n",
+    "\n<h2>BEFORE Pathfinding:</h2> <pre> \n",
     Router::getVars(),
     '</pre>'
 );
 
 Log::add(
-    "\n<h1>Task found:</h1> <pre> \n",
+    "\n<h2>Task found:</h2> <pre> \n",
     $router->pathFinding('default.display'),
     '</pre>'
 );

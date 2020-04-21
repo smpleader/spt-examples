@@ -1,6 +1,6 @@
 <?php
 /**
- * SPT software - Base Object
+ * SPT software - Static Object
  * 
  * @project: https://github.com/smpleader/spt
  * @author: Pham Minh - smpleader

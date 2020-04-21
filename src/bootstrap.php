@@ -12,4 +12,8 @@ defined( 'APP_PATH' ) or die('You must define Application path first');
 
 define( 'SPT_PATH', __DIR__ . '/');
 
-require 'staticObj.php';
+require_once 'baseObj.php';
+require_once 'staticObj.php';
+require_once 'util.php';
+require_once 'config.php';
+require_once 'log.php';

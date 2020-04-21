@@ -119,17 +119,21 @@ class Router extends staticObj
         }
         
         $found = false;
-        foreach( $sitemap as $reg=>$value ){
-            $reg = str_replace( '-', '\-', $reg) ;
-            if (preg_match ('#'. $reg. '#i', $path, $matches)){
-                $found = $value; 
-                //self::set('pathFinding', $matches);
-                break;
-            }
-        }
 
         if( is_callable($callback)){
             $found = $callback($sitemap, $path);
+        } else {
+            foreach( $sitemap as $reg=>$value ){
+                $reg = str_replace( '-', '\-', $reg) ;
+                if (preg_match ('#'. $reg. '#i', $path, $matches))
+                {
+                    if( !is_array($value) || isset($value['fnc']))
+                    {
+                        $found = $value;
+                        break;
+                    }
+                }
+            }
         }
 
         return ( $found === false ) ? $default : $found;

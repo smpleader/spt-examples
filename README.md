@@ -38,6 +38,10 @@ When you are bored with packages, and love simply "include and run", let try thi
 
 4. Format and theme: examples/theme
 
+5. Multi lanugage: examples/multilanguage
+
+6. Rest API: examples/restapi
+
 
 # LICENCE
 

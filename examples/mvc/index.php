@@ -12,35 +12,33 @@ define( 'APP_PATH', __DIR__ . '/');
 
 require APP_PATH.'../../src/bootstrap.php';
 require SPT_PATH.'router.php';
+require SPT_PATH.'app.php';
+
+/**
+ * Application Bootstrap
+ */
+require 'application.php';
 
 Config::init(
     [
-        'siteSubpath' => 'examples/router'
+        'siteSubpath' => 'examples/mvc'
     ]
 );
 
 /**
- * Test Router
+ * Routing
  */
 $router = Router::_(
     [
-        'testA' => 'a.test', 
-        'test-ajax' => ['fnc'=>'home.testAjax', 'format'=>'ajax'],
+        'test-json' => ['fnc'=>'home.testJson', 'format'=>'json'],
+        'test-ajax' => ['fnc'=>'home.test', 'format'=>'ajax'],
         'test' => 'home.test', 
+        'debug' => 'home.debug', 
         '' => ['fnc'=>'home.display', 'format'=> 'html'],
     ]
 );
 
-Log::add(
-    "\n<h1>BEFORE Pathfinding:</h1> <pre> \n",
-    Router::getVars(),
-    '</pre>'
-);
-
-Log::add(
-    "\n<h1>Task found:</h1> <pre> \n",
-    $router->pathFinding('default.display'),
-    '</pre>'
-);
-
-Log::show();
+/**
+ * Running application
+ */
+application::execute($router->pathFinding('home.default'));
