@@ -17,3 +17,4 @@ require_once 'staticObj.php';
 require_once 'util.php';
 require_once 'config.php';
 require_once 'log.php';
+require_once 'lang.php';

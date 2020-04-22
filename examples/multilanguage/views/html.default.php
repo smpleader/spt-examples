@@ -8,4 +8,6 @@
  * 
  */
 
-echo '<h3>Default page </h3> This is a simple HTMPL Page. <a href="/examples/mvc">Back home</a>';
+echo '<h3>'. Lang::_('Default page'). '</h3>';
+echo Lang::_('This is a simple HTMPL Page.') ;
+echo '<a href="/examples/multilanguage">'. Lang::_('Back home') .'</a>';

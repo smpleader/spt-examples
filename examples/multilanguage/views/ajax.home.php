@@ -8,4 +8,6 @@
  * 
  */
 
-echo '<h3>Default page </h3> This is a simple HTMPL Page. <a href="/examples/mvc">Back home</a>';
+echo 'Ajax load here';
+echo '<pre>';
+var_dump($this->get('vars'));

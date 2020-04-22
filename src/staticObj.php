@@ -26,4 +26,9 @@ class staticObj
     {
         return static::$_vars;
     }
+
+    static function importArr(array $arr)
+    {
+        static::$_vars = array_merge(static::$_vars, $arr);
+    }
 }
