@@ -42,7 +42,7 @@ $router = Router::_(
  * Language
  * We can save this in session
  */
-$lange = isset($_GET['lang']) ? $_GET['lang'] : 'en';
+$lange = Util::get('lang', 'en', 'get');
 $availableLanguages = Config::get('availableLanguages', ['en', 'fr']);
 if(!in_array($lange, $availableLanguages)){
     $lange = 'en';

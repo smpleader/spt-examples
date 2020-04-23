@@ -42,7 +42,7 @@ $router = Router::_(
  * Language
  * We can save this in session
  */
-$lange = isset($_GET['lang']) ? $_GET['lang'] : 'en';
+$lange = Util::get('lang', 'en', 'get');
 $availableLanguages = Config::get('availableLanguages', ['en', 'fr']);
 if(!in_array($lange, $availableLanguages)){
     $lange = 'en';
@@ -51,16 +51,18 @@ require_once APP_PATH.'languages/'.$lange. '.php';
 
 /**
  * Theme
- * 
  */
 $theme = application::session('theme', 'b4');
-if( isset($_GET['theme']) && 
-    $_GET['theme'] != $theme &&
-    $_GET['theme'] != 'widget' &&
-    file_exists( APP_PATH. 'themes/'. $_GET['theme']. '/')
-){
-    $theme = $_GET['theme'];
-    application::session('theme', $theme, true);
+if( isset($_GET['theme']))
+{
+    $new = Util::get('theme', 'b4', 'get');
+    if( $new !=  $theme &&
+        $new != 'widget' &&
+        file_exists( APP_PATH. 'themes/'. $new. '/')
+    ){
+        $theme = $new;
+        application::session('theme', $theme, true);
+    }
 }
 Theme::init($theme);
 
