@@ -16,16 +16,16 @@ class baseObj
 
     public function set($key, $value)
     {
-        $this->$_vars[$key] = $value;
+        $this->_vars[$key] = $value;
     }
 
     public function get($key, $default = null)
     {
-        return isset($this->$_vars[$key]) ? $this->$_vars[$key] : $default;
+        return isset($this->_vars[$key]) ? $this->_vars[$key] : $default;
     }
 
     public function getVars()
     {
-        return $this->$_vars;
+        return $this->_vars;
     }
 }

@@ -12,6 +12,20 @@ defined( 'SPT_PATH' ) or die('');
 
 class fncArray
 {
+    public static function merge(&$arr1, $arr2)
+    {
+        foreach($arr2 as $key => $value)
+        {
+            if(is_array($value)){
+                fncArray::merge($arr1[$key], $value);
+            } else {
+                $arr1[$key] = $value;
+            }
+        }
+    }
 
-    
+    public static function toString($arr, $break = "\n")
+    {
+        return implode( $break, $arr);
+    }
 }

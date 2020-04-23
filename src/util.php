@@ -109,4 +109,9 @@ class Util{
                 return $from[$var];
         }
     }
+
+    public static function uc( $word )
+    {
+        return ucfirst( strtolower($word) );
+    }
 }

@@ -12,9 +12,12 @@ defined( 'SPT_PATH' ) or die('');
 
 class staticObj 
 {
-    static function set($key, $value)
+    static function set($key, $value, $overwrite = true)
     {
-        static::$_vars[$key] = $value;
+        if( $overwrite || !isset( static::$_vars[$key] ) )
+        {
+            static::$_vars[$key] = $value;
+        }
     }
 
     static function get($key, $default = null)
@@ -29,6 +32,6 @@ class staticObj
 
     static function importArr(array $arr)
     {
-        static::$_vars = array_merge(static::$_vars, $arr);
+        fncArray::merge(static::$_vars, $arr);
     }
 }

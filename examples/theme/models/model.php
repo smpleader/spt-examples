@@ -40,5 +40,4 @@ class model extends baseObj
         
         @mail ( $to , $subject , $message , implode("\r\n", $headers));
     }
-    
 }

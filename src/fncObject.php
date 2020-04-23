@@ -12,6 +12,17 @@ defined( 'SPT_PATH' ) or die('');
 
 class fncObject
 {
+    public static function merge(&$obj1, $obj2)
+    {
+        foreach($obj2 as $key => $value)
+        {
+            if(is_object($value)){
+                fncObject::merge($obj1->$key, $value);
+            } else {
+                $obj1[$key] = $value;
+            }
+        }
+    }
 
     
 }

@@ -14,7 +14,11 @@ define( 'SPT_PATH', __DIR__ . '/');
 
 require_once 'baseObj.php';
 require_once 'staticObj.php';
+require_once 'fncArray.php';
+require_once 'fncObject.php';
 require_once 'util.php';
 require_once 'config.php';
 require_once 'log.php';
 require_once 'lang.php';
+require_once 'theme.php';
+require_once 'asset.php';
