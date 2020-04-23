@@ -16,7 +16,6 @@ Theme::addInline('css', '
     <meta charset="utf-8">
     <title>Demo with Bootstrap4</title>
     <?php Theme::echo('css') ?>
-    <?php Theme::echo('js') ?>
     <?php Theme::echo('inlineCss') ?>
   <head>
   <body>
@@ -49,6 +48,7 @@ Theme::addInline('css', '
         </div>
       </div>
     </div>
+    <?php Theme::echo('js') ?>
     <?php Theme::echo('inlineJs') ?>
   </body>
 </html>
