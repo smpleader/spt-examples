@@ -8,18 +8,7 @@
  * 
  */
 
- /*
-Theme::add('http://abc.com/asset/jquery.css');
-Theme::add('asset/blue.js');
-Theme::add('asset/blue.css');
-Theme::add('css/xxx.css');
-Theme::add('css/xxx.js', 'jquery');
-Theme::add('http://abc.com/asset/jquery.js');
-
-?> 
-
-<?php echo implode("\n", Theme::generate('js')); ?>
-<?php echo fncArray::toString( Theme::generate('css')); */ ?>
+?>
 
 <h1><?php Lang::e('Home page') ?></h1>
 <p><?php Lang::e('Demo') ?>:</p>

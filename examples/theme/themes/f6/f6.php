@@ -23,10 +23,10 @@ Theme::add('https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js', '
 Theme::add('https://cdn.jsdelivr.net/npm/foundation-sites@6.6.3/dist/css/foundation.min.css', '', 'foundation');
 Theme::add('https://cdn.jsdelivr.net/npm/foundation-sites@6.6.3/dist/js/foundation.min.js', 'jquery', 'foundation');
 
-$structure = application::get('structure', 'index');
+$page = application::get('page', 'index');
 
-include THEME_PATH. $structure.'.php';
+include THEME_PATH. $page.'.php';
 
 /**
- *  TODO: use structure fefine as default.html to generate a page
+ *  TODO: use page fefine as default.html to generate a page
  */

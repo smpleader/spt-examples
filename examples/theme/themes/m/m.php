@@ -23,6 +23,6 @@ Theme::add('https://code.jquery.com/jquery-2.1.1.min.js', '', 'jquery');
 Theme::add('https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css', '', 'materialize');
 Theme::add('https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js', 'jquery', 'materialize');
 
-$structure = application::get('structure', 'index');
+$page = application::get('page', 'index');
 
-include THEME_PATH. $structure.'.php';
+include THEME_PATH. $page.'.php';

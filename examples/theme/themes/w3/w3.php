@@ -21,6 +21,6 @@ defined( 'APP_PATH' ) or die('');
 Theme::add('https://www.w3schools.com/w3css/4/w3.css', '', 'w3');
 Theme::add('https://code.jquery.com/jquery-2.1.1.min.js', '', 'jquery');
 
-$structure = application::get('structure', 'index');
+$page = application::get('page', 'index');
 
-include THEME_PATH. $structure.'.php';
+include THEME_PATH. $page.'.php';
