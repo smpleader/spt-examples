@@ -86,10 +86,18 @@ class application extends app
                 case 'json':
                     header('Content-Type: application/json');
                     echo json_encode(application::data());
-                    die(0);
+                    exit(0);
                 case 'redirect':
                     // TODO add header for redirect
-                    break;
+                    $redirect = self::get('redirect', '/');
+                    $redirect_status = self::get('redirectStatus', '/');
+                    if( headers_sent()){
+                        echo '<script>document.location.href="'.$redirect.'"</script>';
+                    }else{
+                        $status = empty( $redirect_status ) ? 302 : (int) $redirect_status;
+                        header( "Location: $redirect", true, $status );
+                    }
+                    exit(0);
                 case '':
                     Log::add(
                         '<pre>',
@@ -98,7 +106,7 @@ class application extends app
                         '</pre>',
                     );
                     Log::show();
-                    die();
+                    exit(0);
                     break;
             }
             
