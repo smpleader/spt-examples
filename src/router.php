@@ -52,7 +52,6 @@ class Router extends staticObj
      * TODO support standardized CMS
      */
     private $nodes;
-    private $sefUrls;
     //public function __construct(){}
 
     public function parse()
@@ -107,10 +106,19 @@ class Router extends staticObj
         $sitemap = self::get('sitemap');
         $path = self::get('actualPath');
         $isHome = self::get('isHome');
+        self::set('sitenode', '');
         
         if($isHome){
             $found = self::get('home', '');
-            return $found === '' ? $default : $found;
+            if( $found === '')
+            {
+                $found = $default;
+            }
+            else
+            {
+                self::set('sitenode', '/');
+            }
+            return $found;
         }
 
         if( isset($sitemap[$path]) )
@@ -120,16 +128,21 @@ class Router extends staticObj
         
         $found = false;
 
-        if( is_callable($callback)){
+        if( is_callable($callback))
+        {
             $found = $callback($sitemap, $path);
-        } else {
-            foreach( $sitemap as $reg=>$value ){
-                $reg = str_replace( '-', '\-', $reg) ;
+        } 
+        else 
+        {
+            foreach( $sitemap as $reg=>$value )
+            {
+                //$reg = str_replace( ['-'], ['\-'], $reg) ;
                 if (preg_match ('#'. $reg. '#i', $path, $matches))
                 {
                     if( !is_array($value) || isset($value['fnc']))
                     {
                         $found = $value;
+                        self::set('sitenode', $reg);
                         break;
                     }
                 }
@@ -196,5 +209,29 @@ class Router extends staticObj
         }
 
         return $headers;
+    }
+
+    public function praseUrl(array $parameters)
+    {
+        $slugs = trim(self::get('actualPath', ''), '/');
+        $sitenote = self::get('sitenode', '');
+        if( $slugs > $sitenote )
+        {
+            $slugs = trim(substr($slugs, strlen($sitenote)), '/');
+            $values = explode('/', $slugs);
+        }
+        else
+        {
+            $values = [];
+        }
+        
+        $vars = [];
+        foreach($parameters as $index => $name)
+        {
+            $vars[$name] = isset($values[$index]) ? $values[$index] : null;
+        }
+
+        return $vars;
+
     }
 }

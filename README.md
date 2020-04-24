@@ -6,16 +6,21 @@ SPT == Simple PHP Tools ;)
 
 - Or Such Peachy Treats
 
-- .. anything make you happy
+- .. anything make you happy with simplest and miniumn of code lines to solve your matters
 
 When you are bored with packages, and love simply "include and run", let try this software.
 
 # SPT usage
 
-- Create a PHP page
+- Create a PHP application
 - Support multi language
 - Support SEF link
-- ..
+- Implement MVC
+- Support multi theme
+- Support REST APIs
+- Support Routering based Regular expression search
+- Support multi sites
+- Support CLI
 
 # Links
 
@@ -25,8 +30,9 @@ When you are bored with packages, and love simply "include and run", let try thi
 
 # Setup:
 
+1. Be sure we are running PHP7
 1. Define APP_PATH to root folder of your application.
-2. Include files and run, more details, look at examples folder.
+2. Include files and run, more details, look at "examples" folders.
 
 # Examples:
 
@@ -41,6 +47,22 @@ When you are bored with packages, and love simply "include and run", let try thi
 5. Multi lanugage: examples/multilanguage
 
 6. Rest API: examples/restapi
+
+7. Implement JWT ( private branch )
+
+8. Implement Unit Test and Auto Test ( private branch )
+
+9. Use Namespace and  PSR-4 ( private branch )
+
+10. Composer and spl_autoload_register ( private branch )
+
+11. Integrate as Joomla extensions ( private branch )
+
+12. Integrate as WP extensions ( private branch )
+
+13.  Multi site: Routing based domain name ( private branch )
+
+14.  CLI ( private branch )
 
 
 # LICENCE
