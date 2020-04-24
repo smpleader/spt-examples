@@ -41,4 +41,4 @@ $router = Router::_(
 /**
  * Running application
  */
-application::execute($router->pathFinding('home.default'));
+application::execute($router);

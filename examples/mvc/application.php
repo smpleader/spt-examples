@@ -12,7 +12,9 @@ defined( 'APP_PATH' ) or die('');
 
 class application extends app 
 {
-    public static function execute($intruction){
+    public static function execute($router){
+
+        $intruction = $router->pathFinding('home.default');
 
         $fnc = '';
 

@@ -69,4 +69,4 @@ Theme::init($theme);
 /**
  * Running application
  */
-application::execute($router->pathFinding('home.default'));
+application::execute($router);

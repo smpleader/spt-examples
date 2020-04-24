@@ -52,4 +52,4 @@ require_once APP_PATH.'languages/'.$lange. '.php';
 /**
  * Running application
  */
-application::execute($router->pathFinding('home.default'));
+application::execute($router);
