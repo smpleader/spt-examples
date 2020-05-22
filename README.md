@@ -64,6 +64,8 @@ When you are bored with packages, and love simply "include and run", let try thi
 
 14.  CLI ( private branch )
 
+15.  Query builder and PDO wrapper to work with database: examples/database
+
 
 # LICENCE
 
