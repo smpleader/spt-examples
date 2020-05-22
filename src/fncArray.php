@@ -28,4 +28,9 @@ class fncArray
     {
         return implode( $break, $arr);
     }
+
+    public static function ifReady($arr)
+    {
+        return(is_array($arr) && count($arr));
+    }
 }

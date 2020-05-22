@@ -22,3 +22,6 @@ require_once 'log.php';
 require_once 'lang.php';
 require_once 'theme.php';
 require_once 'asset.php';
+require_once 'pdo.php';
+require_once 'query.php';
+require_once 'response.php';
