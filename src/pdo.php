@@ -135,6 +135,26 @@ class PDOWrapper{
 		return false;
 	}
 
+	public function exec($query)
+	{
+		if($this->connected === true)
+		{
+			try
+			{
+				return $this->connection->exec($query);
+			}
+			catch(PDOException $e)
+			{
+				if($this->errors === true)
+				{
+					$this->error($e->getMessage());
+				}
+			}
+		}
+		
+		return false;
+	}
+
 	public function insert($query, $parameters = array())
 	{
 		if($this->connected === true)

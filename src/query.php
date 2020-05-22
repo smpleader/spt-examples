@@ -28,7 +28,8 @@ class query
     public function __construct($host, $username, $password, $database, $prefix, $fquota='`')
     {
         $this->db = new PDOWrapper($host, $username, $password, $database);
-        if($this->db == false)
+        
+        if($this->db === false)
         {
             die('Invalid DB connection');
         }
@@ -51,9 +52,12 @@ class query
 
     private function prefix($q)
     {
-        foreach($this->prefix as $find=>$replace)
+        if(fncArray::ifReady($this->prefix))
         {
-            $q = str_replace($find, $replace, $q);
+            foreach($this->prefix as $find=>$replace)
+            {
+                $q = str_replace($find, $replace, $q);
+            }
         }
         return $q;
     }
@@ -65,6 +69,11 @@ class query
             $name = $this->qq. $name .$this->qq;
         }
         return $name;
+    }
+
+    public function isConnected()
+    {
+        return $this->db->connected;
     }
 
     public function table($name)
@@ -158,7 +167,7 @@ class query
         {
             $this->limit = implode(', ', $limit);
         }
-        elseif(is_string($limit))
+        elseif(is_string($limit) || is_numeric($limit))
         {
             $this->limit = $limit;
         }
@@ -317,11 +326,27 @@ class query
             $q .= ' WHERE '. implode(' ', $this->where);
         }
 
+        if(!empty($this->orderby))
+        {
+            $q .= ' ORDER BY '.$this->orderby;
+        }
+
+        if(!empty($this->limit))
+        {
+            $q .= ' LIMIT '.$this->limit;
+        }
+
         $q = $this->prefix($q);
  
-        $res = $this->db->delete($q, $this->value);
+        $res = $this->db->delete($q, $this->value);Log::add($q, $this->value);
         // Debug $q
         $this->reset();
         return $res;
+    }
+
+    public function exec($sql)
+    { 
+        $sql = $this->prefix($sql);
+        return $this->db->exec($sql);
     }
 }
