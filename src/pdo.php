@@ -53,7 +53,7 @@ class PDOWrapper{
 			$this->connected = false;
 			if($this->errors === true)
 			{
-				return $this->error($e->getMessage());
+				return $this->setError($e->getMessage());
 			}else{
 				return false;
 			}
@@ -65,7 +65,7 @@ class PDOWrapper{
 		$this->connection = null;
 	}
 
-	public function error($error)
+	public function setError($error)
 	{
 		Log::add($error);
 	}
@@ -82,7 +82,7 @@ class PDOWrapper{
 			{
 				if($this->errors === true)
 				{
-					return $this->error($e->getMessage());
+					return $this->setError($e->getMessage());
 				}else{
 					return false;
 				}
@@ -104,7 +104,7 @@ class PDOWrapper{
 			{
 				if($this->errors === true)
 				{
-					return $this->error($e->getMessage());
+					return $this->setError($e->getMessage());
 				}else{
 					return false;
 				}
@@ -127,7 +127,7 @@ class PDOWrapper{
 			{
 				if($this->errors === true)
 				{
-					$this->error($e->getMessage());
+					$this->setError($e->getMessage());
 				}
 			}
 		}
@@ -147,7 +147,7 @@ class PDOWrapper{
 			{
 				if($this->errors === true)
 				{
-					$this->error($e->getMessage());
+					$this->setError($e->getMessage());
 				}
 			}
 		}
@@ -169,7 +169,7 @@ class PDOWrapper{
 			{
 				if($this->errors === true)
 				{
-					$this->error($e->getMessage());
+					$this->setError($e->getMessage());
 				}
 			}
 		}
@@ -202,7 +202,7 @@ class PDOWrapper{
 			{
 				if($this->errors === true)
 				{
-					$this->error($e->getMessage());
+					$this->setError($e->getMessage());
 				}
 			}
 		}
@@ -221,7 +221,7 @@ class PDOWrapper{
 			{
 				if($this->errors === true)
 				{
-					return $this->error($e->getMessage());
+					return $this->setError($e->getMessage());
 				}else{
 					return false;
 				}

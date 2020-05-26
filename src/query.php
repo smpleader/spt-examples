@@ -90,7 +90,7 @@ class query
         }
         elseif(is_string($fields))
         {
-            if( strpos($fields, '*') === false )
+            if( strpos($fields, '*') === false && strpos($fields, ',') === false )
             {
                 $fields = $this->qq($fields);
             }
@@ -111,7 +111,7 @@ class query
                 
                 if(is_array($val))
                 {
-                    $ws = $val[0]. ' ?';
+                    $ws = $key. ' '. $val[0]. ' ?';
                     $this->value($val[1]);
                 }
                 else
@@ -215,7 +215,7 @@ class query
 
         if(count($this->where))
         {
-            $q .= ' WHERE '. implode(' ', $this->where);
+            $q .= ' WHERE '. implode(' AND ', $this->where);
         }
 
         if(!empty($this->orderby))
@@ -277,9 +277,9 @@ class query
 
         $q = 'INSERT INTO '. $this->table . '( '. implode(',', $this->fields ). ') VALUES ('. implode(',', $value).')';
  
-        $q = $this->prefix($q);
+        $this->sql = $this->prefix($q);
 
-        $id = $this->db->insert($q, $this->value);
+        $id = $this->db->insert($this->sql, $this->value);
         // Debug $q
         $this->reset();
         return $id;
@@ -303,12 +303,12 @@ class query
         if(count($this->where))
         {
            
-            $q .= ' WHERE '. implode(' ', $this->where);
+            $q .= ' WHERE '. implode(' AND ', $this->where);
         }
 
-        $q = $this->prefix($q);
+        $this->sql = $this->prefix($q);
  
-        $res = $this->db->update($q, $this->value);
+        $res = $this->db->update($this->sql, $this->value);
         // Debug $q
         $this->reset();
         return $res;
@@ -323,7 +323,7 @@ class query
         if(count($this->where))
         {
            
-            $q .= ' WHERE '. implode(' ', $this->where);
+            $q .= ' WHERE '. implode(' AND ', $this->where);
         }
 
         if(!empty($this->orderby))
@@ -336,9 +336,9 @@ class query
             $q .= ' LIMIT '.$this->limit;
         }
 
-        $q = $this->prefix($q);
+        $this->sql = $this->prefix($q);
  
-        $res = $this->db->delete($q, $this->value);Log::add($q, $this->value);
+        $res = $this->db->delete($this->sql, $this->value);
         // Debug $q
         $this->reset();
         return $res;
@@ -346,7 +346,10 @@ class query
 
     public function exec($sql)
     { 
-        $sql = $this->prefix($sql);
-        return $this->db->exec($sql);
+        $this->query = $this->prefix($sql);
+        $res = $this->db->exec($this->query);
+        // Debug $q
+        $this->reset();
+        return $res;
     }
 }

@@ -16,7 +16,21 @@ class Response extends staticObj
 
     public static function _($content=false)
     {
-        if($content) echo $content;
+        if(is_array($content) || is_object($content))
+        {
+            header('Content-Type: application/json');
+            echo json_encode($content);
+        }
+        elseif($content!==false)
+        {
+            echo $content;
+        }
+
+        if(Config::get('debug', false) && Config::get('debugPath', ''))
+        {
+            Log::toFile( Config::get('debugPath'));
+        }
+        
         exit(0);
     }
 
