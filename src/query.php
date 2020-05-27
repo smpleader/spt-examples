@@ -64,10 +64,16 @@ class query
 
     private function qq($name)
     {
+        if( strpos($name, '.') !== 0 && strpos($name, '`.`') === false)
+        {
+            $name = str_replace('.', '`.`', $name);
+        }
+
         if( strpos($name, $this->qq) !== 0)
         {
             $name = $this->qq. $name .$this->qq;
         }
+
         return $name;
     }
 
@@ -78,7 +84,7 @@ class query
 
     public function table($name)
     {
-        $this->table = $this->qq($name);
+        $this->table = $this->qq($this->prefix($name));
         return $this;
     }
 
@@ -111,7 +117,7 @@ class query
                 
                 if(is_array($val))
                 {
-                    $ws = $key. ' '. $val[0]. ' ?';
+                    $ws = $this->qq($key). ' '. $val[0]. ' ?';
                     $this->value($val[1]);
                 }
                 else

@@ -79,6 +79,10 @@ class Util{
                     break;
             }
         }
+        elseif(is_object($from))
+        {
+            $from = (array)$from;
+        }
 
         if( !isset($from[$var]) ) return null;
 

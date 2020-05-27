@@ -49,25 +49,46 @@ class PDOWrapper{
 			$this->connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 			$this->connection->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
 		}
-		catch(PDOException $e){
+		catch(PDOException $e)
+		{
 			$this->connected = false;
-			if($this->errors === true)
-			{
-				return $this->setError($e->getMessage());
-			}else{
-				return false;
-			}
+			 
+			return $this->setError(
+				$e->getMessage(),
+				'Tried to connect DB',
+				[$host, $username, $password, $database, $parameters]
+			);
 		}
 	}
 
-	function __destruct(){
+	function __destruct()
+	{
 		$this->connected = false;
 		$this->connection = null;
 	}
 
-	public function setError($error)
+	public function setError($error, $sql, $input)
 	{
-		Log::add($error);
+		$this->log($sql, $input, $error);
+		return false;
+	}
+
+	public function log($sql, $input, $error='')
+	{
+		if(Config::get('debug'))
+		{
+			if($error)
+			{
+				Log::add('>> Mysql error:', $error);
+			}
+			else
+			{
+				Log::add('* Mysql query log *');
+			}
+
+			Log::add('>> SQL:', $sql);
+			Log::add('>> Inputed value:', $input);
+		}
 	}
 
 	public function fetch($query, $parameters = array()){
@@ -76,20 +97,16 @@ class PDOWrapper{
 			try{
 				$query = $this->connection->prepare($query);
 				$query->execute($parameters);
+				$this->log($query, $parameters);
 				return $query->fetch();
 			}
 			catch(PDOException $e)
 			{
-				if($this->errors === true)
-				{
-					return $this->setError($e->getMessage());
-				}else{
-					return false;
-				}
+				return $this->setError($e->getMessage(), $query, $parameters);
 			}
-		}else{
-			return false;
 		}
+		
+		return false;
 	}
 
 	public function fetchAll($query, $parameters = array()){
@@ -98,20 +115,16 @@ class PDOWrapper{
 			try{
 				$query = $this->connection->prepare($query);
 				$query->execute($parameters);
+				$this->log($query, $parameters);
 				return $query->fetchAll();
 			}
 			catch(PDOException $e)
 			{
-				if($this->errors === true)
-				{
-					return $this->setError($e->getMessage());
-				}else{
-					return false;
-				}
+				return $this->setError($e->getMessage(), $query, $parameters);
 			}
-		}else{
-			return false;
 		}
+
+		return false;
 	}
 
 	public function count($query, $parameters = array())
@@ -121,14 +134,12 @@ class PDOWrapper{
 			try{
 				$query = $this->connection->prepare($query);
 				$query->execute($parameters);
+				$this->log($query, $parameters);
 				return $query->rowCount();
 			}
 			catch(PDOException $e)
 			{
-				if($this->errors === true)
-				{
-					$this->setError($e->getMessage());
-				}
+				return $this->setError($e->getMessage(), $query, $parameters);
 			}
 		}
 
@@ -141,14 +152,12 @@ class PDOWrapper{
 		{
 			try
 			{
+				$this->log($query, '--');
 				return $this->connection->exec($query);
 			}
 			catch(PDOException $e)
 			{
-				if($this->errors === true)
-				{
-					$this->setError($e->getMessage());
-				}
+				return $this->setError($e->getMessage(), $query, '--');
 			}
 		}
 		
@@ -163,14 +172,12 @@ class PDOWrapper{
 			{
 				$query = $this->connection->prepare($query);
 				$query->execute($parameters);
+				$this->log($query, $parameters);
 				return $this->connection->lastInsertId();
 			}
 			catch(PDOException $e)
 			{
-				if($this->errors === true)
-				{
-					$this->setError($e->getMessage());
-				}
+				return $this->setError($e->getMessage(), $query, $parameters);
 			}
 		}
 		
@@ -197,13 +204,11 @@ class PDOWrapper{
 			{
 				$query = $this->connection->prepare($query);
 				$result = $query->execute($parameters); 
+				$this->log($query, $parameters);
 			}
 			catch(PDOException $e)
 			{
-				if($this->errors === true)
-				{
-					$this->setError($e->getMessage());
-				}
+				return $this->setError($e->getMessage(), $query, $parameters);
 			}
 		}
 		
@@ -215,20 +220,16 @@ class PDOWrapper{
 		{
 			try{
 				$query = $this->count("SHOW TABLES LIKE '$table'");
+				$this->log($query, '-');
 				return ($query > 0) ? true : false;
 			}
 			catch(PDOException $e)
 			{
-				if($this->errors === true)
-				{
-					return $this->setError($e->getMessage());
-				}else{
-					return false;
-				}
+				return $this->setError($e->getMessage(), "SHOW TABLES LIKE '$table'", $table);
 			}
-		}else{
-			return false;
 		}
+		
+		return false;
 	}
 }
 
