@@ -69,7 +69,7 @@ class query
             $name = str_replace('.', '`.`', $name);
         }
 
-        if( strpos($name, $this->qq) !== 0 && strpos($name, ' as ') !== false)
+        if( strpos($name, $this->qq) !== 0 && strpos($name, ' as ') === false)
         {
             $name = $this->qq. $name .$this->qq;
         }
@@ -238,7 +238,7 @@ class query
         if(count($this->join))
         {
             foreach($this->join as $join)
-            $q .=  $join."\n ";
+            $q .=  "\n ".$join;
         }
 
         if(count($this->where))
