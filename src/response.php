@@ -28,7 +28,7 @@ class Response extends staticObj
 
         if(Config::get('debug', false) && Config::get('debugPath', ''))
         {
-            Log::toFile(Config::get('debugPath'), Config::get('debugOnce'));
+            Log::toFile(Config::get('debugPath'), !Config::get('debugOnce'));
         }
         
         exit(0);

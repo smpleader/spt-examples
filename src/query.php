@@ -69,7 +69,7 @@ class query
             $name = str_replace('.', '`.`', $name);
         }
 
-        if( strpos($name, $this->qq) !== 0)
+        if( strpos($name, $this->qq) !== 0 && strpos($name, ' as ') !== false)
         {
             $name = $this->qq. $name .$this->qq;
         }
@@ -136,21 +136,37 @@ class query
         return $this;
     }
 
-    public function value($value){
+    public function value($value, $place="where"){
 
         if(is_object($value) || is_array($value))
         {
             foreach($value as $val)
             {
-                $this->value($val);
+                $this->value($val, $place);
             }
         }
         else
         {
-            $this->value[] = $value;
+            $this->value[$place][] = $value;
         }
   
         return $this;
+    }
+
+    public function getValue()
+    {
+        $arr = [];
+        foreach(['update', 'insert', 'where'] as $place)
+        {
+            if(isset($this->value[$place])){
+                foreach($this->value[$place] as $value)
+                {
+                    $arr[] = $value;
+                }
+            }
+        }
+        
+        return $arr;
     }
 
     public function orderby($order){
@@ -219,6 +235,12 @@ class query
 
         $q = 'SELECT '. implode(',', $this->fields). ' FROM '.$this->table;
 
+        if(count($this->join))
+        {
+            foreach($this->join as $join)
+            $q .=  $join."\n ";
+        }
+
         if(count($this->where))
         {
             $q .= ' WHERE '. implode(' AND ', $this->where);
@@ -241,7 +263,7 @@ class query
     {
         $this->where($conditions);
         $this->buildSelect();
-        $data =  $this->db->fetch($this->query, $this->value);
+        $data =  $this->db->fetch($this->query, $this->getValue());
         $this->reset();
         return $data;
     }
@@ -251,7 +273,7 @@ class query
         $this->limit($start.', '.$limit);
         $this->orderby($order);
         $this->buildSelect();
-        $data = $this->db->fetchAll($this->query, $this->value);
+        $data = $this->db->fetchAll($this->query, $this->getValue());
         // debug $this->query here
         $this->reset();
         return $data;
@@ -270,13 +292,13 @@ class query
                     break;
                 }
                 $this->select($key);
-                $this->value($value);
+                $this->value($value, 'insert');
             }
         }
 
         if($indexNum)
         {
-            $this->value($data);
+            $this->value($data, 'insert');
         }
 
         $value = array_fill(0, count($this->fields), '?');
@@ -285,7 +307,7 @@ class query
  
         $this->sql = $this->prefix($q);
 
-        $id = $this->db->insert($this->sql, $this->value);
+        $id = $this->db->insert($this->sql, $this->getValue());
         // Debug $q
         $this->reset();
         return $id;
@@ -299,7 +321,7 @@ class query
         foreach( $data as $key=>$val)
         {
             $updates[] = $this->qq. $key. $this->qq. '= ?';
-            $this->value($val);
+            $this->value($val, 'update');
         }
 
         $q = 'UPDATE '. $this->table . ' SET '. implode(',', $updates) ;
@@ -314,7 +336,7 @@ class query
 
         $this->sql = $this->prefix($q);
  
-        $res = $this->db->update($this->sql, $this->value);
+        $res = $this->db->update($this->sql, $this->getValue());
         // Debug $q
         $this->reset();
         return $res;
@@ -344,7 +366,7 @@ class query
 
         $this->sql = $this->prefix($q);
  
-        $res = $this->db->delete($this->sql, $this->value);
+        $res = $this->db->delete($this->sql, $this->getValue());
         // Debug $q
         $this->reset();
         return $res;
