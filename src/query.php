@@ -117,14 +117,19 @@ class query
                 
                 if(is_array($val))
                 {
-                    $ws = $this->qq($key). ' '. $val[0]. ' ?';
+                    $ws = stripos($val[0], 'LIKE') === false ? $this->qq($key). ' '. $val[0]. ' ?' :  $this->qq($key). ' '. $val[0]. ' %?%';
                     $this->value($val[1]);
+                }
+                elseif(is_numeric($key))
+                {
+                    $ws = $val;
                 }
                 else
                 {
                     $ws = $this->qq($key).' = ?';
                     $this->value($val);
                 }
+
                 $this->where($ws);
             }
         }
@@ -228,12 +233,12 @@ class query
         return $this;
     }
 
-    private function buildSelect()
+    private function buildSelect($getTotal=false)
     {
         if(empty($this->table)) die('Invalid query table');
         if(empty($this->fields)) die('Invalid query fields');
 
-        $q = 'SELECT '. implode(',', $this->fields). ' FROM '.$this->table;
+        $q = $getTotal ? 'SELECT COUNT(*) FROM '.$this->table : 'SELECT '. implode(',', $this->fields). ' FROM '.$this->table;
 
         if(count($this->join))
         {
@@ -268,13 +273,22 @@ class query
         return $data;
     }
 
-    public function list($start='0', $limit='20', $order='')
+    public function list($start='0', $limit='20', $order='', $getTotal=false)
     {
         $this->limit($start.', '.$limit);
         $this->orderby($order);
         $this->buildSelect();
         $data = $this->db->fetchAll($this->query, $this->getValue());
-        // debug $this->query here
+
+        if($getTotal)
+        {
+            $this->buildSelect(true);
+            $data = [
+                'total' => $this->db->fetchColumn($this->query, $this->getValue()),
+                'data' => $data
+            ];
+        }
+
         $this->reset();
         return $data;
     }

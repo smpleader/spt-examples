@@ -109,6 +109,24 @@ class PDOWrapper{
 		return false;
 	}
 
+	public function fetchColumn($query, $parameters = array()){
+		if($this->connected === true)
+		{
+			try{
+				$query = $this->connection->prepare($query);
+				$query->execute($parameters);
+				$this->log($query, $parameters);
+				return $query->fetchColumn();
+			}
+			catch(PDOException $e)
+			{
+				return $this->setError($e->getMessage(), $query, $parameters);
+			}
+		}
+
+		return false;
+	}
+
 	public function fetchAll($query, $parameters = array()){
 		if($this->connected === true)
 		{
