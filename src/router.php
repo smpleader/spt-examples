@@ -22,26 +22,47 @@ class Router extends staticObj
     private static $instance;
     public static function _( $sitemap = [] ){
 
-        if( self::$instance === null ){
+        if( self::$instance === null )
+        {
             self::$instance = new Router();
             self::set('sitemap', array());
             self::$instance->parse();
         }
 
-        if( is_array($sitemap) && count($sitemap) ) {
-            foreach($sitemap as $key=>$value){
-                if($key == '/' || empty($key))
-                {
-                    self::set('home', $value);
-                    unset($sitemap[$key]);
-                }
-            }
+        if( is_array($sitemap) && count($sitemap) ) 
+        {
             $arr = self::get('sitemap');
-            $arr = array_merge($arr, $sitemap);
+            $arr = array_merge($arr, self::flatNodes($sitemap));
             self::set('sitemap', $arr);
         }
 
         return self::$instance;
+    }
+
+    // support nested keys
+    private static function flatNodes($sitemap, $parentSlug='')
+    {
+        $arr = [];
+        foreach($sitemap as $key=>$inside)
+        {
+            if(($key == '/' || empty($key)) && $parentSlug == '')
+            {
+                self::set('home', $inside); 
+            }
+            elseif(strpos($key, '/') === 0)
+            {
+                $arr = array_merge($arr, self::flatNodes($inside, substr($key, 1)));
+            }
+            else
+            {
+                if($parentSlug != '')
+                {
+                    $key = $parentSlug. '/'. $key;
+                }
+                $arr[$key] = $inside;
+            }
+        }
+        return $arr;
     }
  
     public static function url($asset = ''){
