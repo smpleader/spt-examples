@@ -140,9 +140,9 @@ class Util{
         return $ipaddress;
     }
 
-    public function jdecode($string)
+    public function jdecode($string, $asArray=false)
     {
-        $body = @json_decode($string);
+        $body = @json_decode($string, $asArray);
 
         if(json_last_error() !== JSON_ERROR_NONE)
         {
