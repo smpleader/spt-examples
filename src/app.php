@@ -15,7 +15,7 @@ class app extends staticObj
     protected static $_vars = array();
     protected static $_data = array();
 
-    private function _data($data, $key = null, $value = null, $format = 0)
+    private static function _data($data, $key = null, $value = null, $format = 0)
     {
         switch($data)
         {

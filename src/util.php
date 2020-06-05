@@ -119,7 +119,7 @@ class Util{
         return ucfirst( strtolower($word) );
     }
 
-    public function getClientIp() {
+    public static function getClientIp() {
         $ipaddress = '';
         if (getenv('X-Real-IP'))
             $ipaddress = getenv('X-Real-IP');
@@ -140,7 +140,7 @@ class Util{
         return $ipaddress;
     }
 
-    public function jdecode($string, $asArray=false)
+    public static function jdecode($string, $asArray=false)
     {
         $body = @json_decode($string, $asArray);
 
