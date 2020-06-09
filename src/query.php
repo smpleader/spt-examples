@@ -282,6 +282,7 @@ class query
 
         if($getTotal)
         {
+            $this->limit(''); // reset to count
             $this->buildSelect(true);
             $data = [
                 'total' => $this->db->fetchColumn($this->query, $this->getValue()),
