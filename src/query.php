@@ -64,14 +64,17 @@ class query
 
     private function qq($name)
     {
-        if( strpos($name, '.') !== 0 && strpos($name, '`.`') === false)
-        {
-            $name = str_replace('.', '`.`', $name);
-        }
-
-        if( strpos($name, $this->qq) !== 0 && strpos($name, ' as ') === false)
+        if(  
+            strpos($name, $this->qq) === false && strpos($name, ' as ') === false
+        )
         {
             $name = $this->qq. $name .$this->qq;
+        }
+
+        if( strpos($name, $this->qq) === 0 && 
+            strpos($name, $this->qq.'.'.$this->qq) === false)
+        {
+            $name = str_replace('.', $this->qq.'.'. $this->qq, $name);
         }
 
         return $name;
@@ -275,7 +278,14 @@ class query
 
     public function list($start='0', $limit='20', $order='', $getTotal=false)
     {
-        $this->limit($start.', '.$limit);
+        if(empty($start) && empty($limit))
+        {
+            $this->limit(''); 
+        }
+        else
+        {
+            $this->limit($start.', '.$limit);
+        }
         $this->orderby($order);
         $this->buildSelect();
         $data = $this->db->fetchAll($this->query, $this->getValue());
@@ -328,9 +338,37 @@ class query
         return $id;
     }
 
+    public function insertBulk($data=array(), $fields=array())
+    {
+        if(!count($fields))
+        {
+            $fields = array_keys($data[0]);
+        }
+
+        $this->select($fields);
+        $value = array_fill(0, count($fields), '?');
+        $value = '(' . implode(',', $value).')';
+
+        $values = [];
+        foreach($data as $row)
+        {
+            $values[] = $value;
+            $this->value($row, 'insert');
+        }
+
+
+        $q = 'INSERT INTO '. $this->table . '( '. implode(',', $this->fields ). ') VALUES '. implode(',', $values);
+ 
+        $this->sql = $this->prefix($q);
+
+        $try = $this->db->query($this->sql, $this->getValue());
+        // Debug $q
+        $this->reset();
+        return $try;
+    }
+
     public function update($data=array(), $conditions=array())
     {
-
         $updates = array();
  
         foreach( $data as $key=>$val)
