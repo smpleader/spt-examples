@@ -34,7 +34,7 @@ class PDOWrapper{
 			}
 			else
 			{
-				$this->connection = new PDO("mysql:host=" . $host . ";dbname=" . $database, $username, $password);
+				$this->connection = new PDO("mysql:host=" . $host . ";dbname=" . $database. ";charset=utf8mb4", $username, $password);
 			}
 
 			if( isset($parameters['fetch_mode']))
@@ -48,7 +48,6 @@ class PDOWrapper{
 
 			$this->connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 			$this->connection->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
-			$this->connection->exec("SET NAMES 'utf8';");
 		}
 		catch(PDOException $e)
 		{
