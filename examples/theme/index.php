@@ -9,15 +9,16 @@
  */
 
 define( 'APP_PATH', __DIR__ . '/');
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
 
-require APP_PATH.'../../src/bootstrap.php';
-require SPT_PATH.'router.php';
-require SPT_PATH.'app.php';
+require APP_PATH.'/../../vendor/autoload.php';
 
-/**
- * Application Bootstrap
- */
-require 'application.php';
+use SPT\Config;
+use SPT\Router;
+use SPT\Theme;
+use SPT\Util;
+use Examples\theme\application;
 
 Config::init(
     [
@@ -69,4 +70,11 @@ Theme::init($theme);
 /**
  * Running application
  */
-application::execute($router);
+try{
+    // Your code
+    application::execute($router);
+} 
+catch(Error $e) {
+   $trace = $e->getTrace();
+   echo $e->getMessage().' in '.$e->getFile().' on line '.$e->getLine().' called from '.$trace[0]['file'].' on line '.$trace[0]['line'];
+}

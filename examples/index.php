@@ -10,12 +10,15 @@
 
 define( 'APP_PATH', __DIR__ . '/');
 
-require APP_PATH.'src/bootstrap.php';
-require SPT_PATH.'router.php';
+require APP_PATH.'/../vendor/autoload.php';
+
+use SPT\Router;
+use SPT\Config;
+use SPT\Log;
 
 Config::init(
     [
-        'siteSubpath' => ''
+        'siteSubpath' => 'examples'
     ]
 );
 
@@ -33,7 +36,7 @@ $router = Router::_(
 );
 
 Log::add(
-    "\n<h1>Test in root folder</h1> <pre> \n",
+    "\n<h1>Test in example folder</h1> <pre> \n",
     "\n<h2>Router ready:</h2> <pre> \n",
     Router::getVars(),
     '</pre>'

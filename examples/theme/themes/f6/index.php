@@ -1,5 +1,8 @@
 <?php defined( 'APP_PATH' ) or die('');
 
+use SPT\Theme;
+use Examples\theme\application;
+
 Theme::addInline('js', 'console.log("hi")');
 
 ?>
@@ -9,7 +12,7 @@ Theme::addInline('js', 'console.log("hi")');
     <meta charset="utf-8">
     <title>Demo Foundation6</title>
     <?php Theme::echo('css') ?>
-  <head>
+  </head>
   <body>
   <div class="top-bar">
       <div class="top-bar-left">

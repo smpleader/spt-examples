@@ -10,6 +10,9 @@
 
 defined( 'APP_PATH' ) or die('');
 
+use SPT\Theme;
+use Examples\theme\application;
+
 /**
  * Basic script:
  * 

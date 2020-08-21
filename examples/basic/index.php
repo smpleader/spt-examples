@@ -10,7 +10,10 @@
 
 define( 'APP_PATH', __DIR__ . '/');
 
-require APP_PATH.'../../src/bootstrap.php';
+require APP_PATH.'/../../vendor/autoload.php';
+
+use SPT\Config;
+use SPT\Log;
 
 
 /**

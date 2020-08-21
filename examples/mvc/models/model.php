@@ -8,7 +8,12 @@
  * 
  */
 
+namespace Examples\mvc\models;
+
 defined( 'APP_PATH' ) or die('');
+
+use SPT\BaseObj; 
+use SPT\Config; 
 
 class model extends baseObj 
 {

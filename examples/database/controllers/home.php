@@ -8,12 +8,16 @@
  * 
  */
 
+namespace Examples\database\controllers;
+
 defined( 'APP_PATH' ) or die('');
 
-require 'controller.php';
-require APP_PATH. 'models/model.php';
+use SPT\Util;
+use SPT\Query;
+use Examples\database\application;
+use Examples\database\models\model; 
 
-class homeController extends controller 
+class home extends controller 
 {
     public function updateDbInfo()
     {
@@ -95,7 +99,7 @@ class homeController extends controller
         }
         else
         {
-            $this->query = new query($db['host'], $db['username'], $db['passwd'], $db['database'], ['#__'=>'test_']);
+            $this->query = new Query($db['host'], $db['username'], $db['passwd'], $db['database'], ['#__'=>'test_']);
             //
             if($this->query->isConnected())
             {

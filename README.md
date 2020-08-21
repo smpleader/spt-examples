@@ -52,7 +52,7 @@ When you are bored with packages, and love simply "include and run", let try thi
 
 8. Implement Unit Test and Auto Test ( private branch )
 
-9. Use Namespace and  PSR-4 ( private branch )
+9. Use Namespace and  PSR-4 ( done )
 
 10. Composer and spl_autoload_register ( private branch )
 

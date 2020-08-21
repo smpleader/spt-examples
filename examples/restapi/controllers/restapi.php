@@ -8,12 +8,14 @@
  * 
  */
 
+namespace Examples\restapi\controllers;
+
 defined( 'APP_PATH' ) or die('');
 
-require 'controller.php';
-require APP_PATH. 'models/model.php';
+use Examples\restapi\models\model;
+use Examples\restapi\application;
 
-class restapiController extends controller 
+class restapi extends controller 
 {
     public function any()
     {
@@ -42,7 +44,7 @@ class restapiController extends controller
     {
         $this->set('post-data', $_POST);
         $this->set('url-data', application::get('urlVars'));
-        $this->set('message', 'You requested to update a existing');
+        $this->set('message', 'You requested to update an existing');
     }
 
     public function delete()

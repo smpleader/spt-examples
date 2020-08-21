@@ -20,6 +20,8 @@
 /.php_cs.cache
 /log
 /logs
+/src
+/vendor
 
 # Test Related Files #
 /phpunit.xml
@@ -62,6 +64,7 @@ tests/codeception/cache
 tests/codeception/_output
 tests/codeception/vendor
 composer.phar
+composer.lock
 
 # Build related
 RoboFile.ini

@@ -8,9 +8,16 @@
  * 
  */
 
+namespace Examples\theme;
+
 defined( 'APP_PATH' ) or die('');
 
-class application extends app 
+use SPT\App;
+use SPT\Util;
+use SPT\Log;
+use SPT\Theme;
+
+class application extends App 
 {
     public static function execute($router){
 
@@ -48,10 +55,8 @@ class application extends app
         }
 
         try{
-            
-            require APP_PATH.'/controllers/'. $controller. '.php';
 
-            $controllerName = $controller.'Controller';
+            $controllerName = '\Examples\theme\controllers\\'. $controller;
             $controller = new $controllerName;
 
             if( self::get('format') == 'ajax' )

@@ -8,9 +8,17 @@
  * 
  */
 
+namespace Examples\theme\controllers;
+
 defined( 'APP_PATH' ) or die('');
 
-class controller extends baseObj 
+use SPT\BaseObj;
+use SPT\Util;
+use SPT\Log;
+use SPT\Theme;
+use Examples\theme\application;
+
+class controller extends BaseObj 
 {
     public function set($key, $value)
     {

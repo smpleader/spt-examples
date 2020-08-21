@@ -4,13 +4,20 @@
  * 
  * @project: https://github.com/smpleader/spt
  * @author: Pham Minh - smpleader
- * @description: Just a basic Application implement mvc
+ * @description: Just a basic Application implement restapi
  * 
  */
 
+namespace Examples\restapi;
+
 defined( 'APP_PATH' ) or die('');
 
-class application extends app 
+use SPT\App;
+use SPT\Util;
+use SPT\Log;
+use SPT\Theme;
+
+class application extends App 
 {
     public static function execute($router){
 
@@ -69,10 +76,8 @@ class application extends app
         }
 
         try{
-            
-            require APP_PATH.'/controllers/'. $controller. '.php';
 
-            $controllerName = $controller.'Controller';
+            $controllerName = '\Examples\restapi\controllers\\'. $controller;
             $controller = new $controllerName;
 
             if( self::get('format') == 'ajax' )

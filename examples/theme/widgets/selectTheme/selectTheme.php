@@ -8,7 +8,9 @@
  * 
  */
 
-defined( 'SPT_PATH' ) or die('');
+defined( 'APP_PATH' ) or die('');
+
+use SPT\Theme;
 
 Theme::addInline('js', '
 $("#chooseTheme").change(function(){

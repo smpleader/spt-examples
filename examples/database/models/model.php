@@ -8,9 +8,13 @@
  * 
  */
 
+namespace Examples\database\models;
+
 defined( 'APP_PATH' ) or die('');
 
-class model extends baseObj 
+use SPT\BaseObj;
+
+class model extends BaseObj 
 {
 
     public function email( $to , $subject , $body, $from){

@@ -10,6 +10,8 @@
 
 defined( 'APP_PATH' ) or die('');
 
+use SPT\Lang;
+
 Lang::importArr([
     'Home page' => 'Page d\'accueil',
     'Default page' => 'Page par défaut',

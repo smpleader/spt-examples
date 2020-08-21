@@ -8,9 +8,16 @@
  * 
  */
 
+namespace Examples\mvc\controllers;
+
 defined( 'APP_PATH' ) or die('');
 
-class controller extends baseObj 
+use SPT\BaseObj; 
+use SPT\Config; 
+use SPT\Log; 
+use Examples\mvc\application;
+
+class controller extends BaseObj 
 {
     public function set($key, $value)
     {

@@ -8,6 +8,7 @@
  * 
  */
 
+use SPT\Router;
 
 ?>
 <h1>Rest API Demo Guide</h1>

@@ -1,5 +1,8 @@
 <?php defined( 'APP_PATH' ) or die('');
 
+use SPT\Theme;
+use Examples\theme\application;
+
 Theme::addInline('js', 'console.log("hi")');
 
 ?>
@@ -9,7 +12,7 @@ Theme::addInline('js', 'console.log("hi")');
     <meta charset="utf-8">
     <title>Demo W3.css</title>
     <?php Theme::echo('css') ?>
-  <head>
+  </head>
   <body>
   <!-- Navbar (sit on top) -->
   <div class="w3-top">

@@ -8,12 +8,14 @@
  * 
  */
 
+namespace Examples\theme\controllers;
+
 defined( 'APP_PATH' ) or die('');
 
-require 'controller.php';
-require APP_PATH. 'models/model.php';
+use Examples\theme\models\model;
+use Examples\theme\application;
 
-class homeController extends controller 
+class home extends controller 
 {
     public function test()
     {

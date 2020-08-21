@@ -8,9 +8,14 @@
  * 
  */
 
+namespace Examples\database\controllers;
+
 defined( 'APP_PATH' ) or die('');
 
-class controller extends baseObj 
+use SPT\BaseObj;
+use Examples\database\application;
+
+class controller extends BaseObj 
 {
     public function set($key, $value)
     {

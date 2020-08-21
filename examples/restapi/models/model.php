@@ -8,9 +8,15 @@
  * 
  */
 
+namespace Examples\restapi\controllers;
+
 defined( 'APP_PATH' ) or die('');
 
-class model extends baseObj 
+use SPT\BaseObj; 
+use SPT\Config; 
+use SPT\Log; 
+
+class model extends BaseObj 
 {
 
     public function email( $to , $subject , $body, $from){

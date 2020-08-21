@@ -10,14 +10,12 @@
 
 define( 'APP_PATH', __DIR__ . '/');
 
-require APP_PATH.'../../src/bootstrap.php';
-require SPT_PATH.'router.php';
-require SPT_PATH.'app.php';
+require APP_PATH.'/../../vendor/autoload.php';
 
-/**
- * Application Bootstrap
- */
-require 'application.php';
+use SPT\Config;
+use SPT\Router;
+use SPT\Theme;
+use Examples\restapi\application;
 
 Config::init(
     [

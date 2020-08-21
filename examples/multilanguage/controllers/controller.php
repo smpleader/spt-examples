@@ -7,10 +7,16 @@
  * @description: Just a basic controller
  * 
  */
+namespace Examples\multilanguage\controllers;
 
 defined( 'APP_PATH' ) or die('');
 
-class controller extends baseObj 
+use SPT\BaseObj; 
+use SPT\Config; 
+use SPT\Log; 
+use Examples\multilanguage\application;
+
+class controller extends BaseObj 
 {
     public function set($key, $value)
     {

@@ -10,6 +10,8 @@
 
 defined( 'APP_PATH' ) or die('');
 
+use SPT\Lang;
+
 Lang::importArr([
     'Ajax load here' => 'Ajax load here',
     'Home page' => 'Home page'

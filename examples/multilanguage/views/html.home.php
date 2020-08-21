@@ -8,6 +8,8 @@
  * 
  */
 
+use SPT\Lang;
+
 ?>
 <h1><?php Lang::e('Home page') ?></h1>
 <p><?php Lang::e('Demo') ?>:</p>

@@ -1,5 +1,8 @@
 <?php defined( 'APP_PATH' ) or die('');
 
+use SPT\Theme;
+use Examples\theme\application;
+
 Theme::addInline('js', 'console.log("hi")');
 
 ?>
@@ -9,7 +12,7 @@ Theme::addInline('js', 'console.log("hi")');
     <meta charset="utf-8">
     <title>Demo Materialize</title>
     <?php Theme::echo('css') ?>
-  <head>
+  </head>
   <body>
     <nav class="light-blue lighten-1" role="navigation">
       <div class="nav-wrapper container"><a id="logo-container" href="#" class="brand-logo">Logo</a>

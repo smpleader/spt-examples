@@ -7,13 +7,14 @@
  * @description: Just a basic controller
  * 
  */
+namespace Examples\multilanguage\controllers;
 
 defined( 'APP_PATH' ) or die('');
 
-require 'controller.php';
-require APP_PATH. 'models/model.php';
+use Examples\multilanguage\models\model;
+use Examples\multilanguage\application;
 
-class homeController extends controller 
+class home extends controller 
 {
     public function test()
     {
