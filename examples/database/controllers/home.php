@@ -14,6 +14,7 @@ defined( 'APP_PATH' ) or die('');
 
 use SPT\Util;
 use SPT\Query;
+use SPT\PdoWrapper;
 use Examples\database\application;
 use Examples\database\models\model; 
 
@@ -99,7 +100,8 @@ class home extends controller
         }
         else
         {
-            $this->query = new Query($db['host'], $db['username'], $db['passwd'], $db['database'], ['#__'=>'test_']);
+            $pdo = new PdoWrapper($db['host'], $db['username'], $db['passwd'], $db['database']);
+            $this->query = new Query($pdo, ['#__'=>'test_']);
             //
             if($this->query->isConnected())
             {
