@@ -30,7 +30,7 @@ $router = Router::_(
     [ 
         'book/' => [
             'fnc'=> [
-                'get' => 'restapi.processGet',
+                'get' => 'restapi.get',
                 'post' => 'restapi.post',
                 'put' => 'restapi.put',
                 'delete' => 'restapi.delete',

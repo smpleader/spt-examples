@@ -27,7 +27,7 @@ class restapi extends controller
         input('message', 'You requested something, and we send default');
     }
     
-    public function processGet()
+    public function get()
     {
         input('get-data', $_GET);
         input('url-data', application::get('urlVars'));

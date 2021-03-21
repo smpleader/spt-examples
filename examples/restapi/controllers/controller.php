@@ -12,13 +12,12 @@ namespace Examples\restapi\controllers;
 
 defined( 'APP_PATH' ) or die('');
 
-use SPT\BaseObj; 
 use SPT\Config; 
 use SPT\Log; 
 use Examples\restapi\application;
 use \input, \data;
 
-class controller extends BaseObj 
+class controller
 {
     public function display()
     {
