@@ -16,19 +16,10 @@ use SPT\BaseObj;
 use SPT\Config; 
 use SPT\Log; 
 use Examples\restapi\application;
+use \input, \data;
 
 class controller extends BaseObj 
 {
-    public function set($key, $value)
-    {
-        application::data($key, $value, true);
-    }
-
-    public function get($key, $default = null)
-    {
-        return application::data($key, $default);
-    }
-
     public function display()
     {
        // ..

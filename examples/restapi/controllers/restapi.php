@@ -14,42 +14,43 @@ defined( 'APP_PATH' ) or die('');
 
 use Examples\restapi\models\model;
 use Examples\restapi\application;
+use \input, \data;
 
 class restapi extends controller 
 {
     public function any()
     {
-        $this->set('request-data', $_REQUEST);
-        $this->set('post-data', $_POST);
-        $this->set('get-data', $_GET);
-        $this->set('url-data', application::get('urlVars'));
-        $this->set('message', 'You requested something, and we send default');
+        input('request-data', $_REQUEST);
+        input('post-data', $_POST);
+        input('get-data', $_GET);
+        input('url-data', application::get('urlVars'));
+        input('message', 'You requested something, and we send default');
     }
     
-    public function get()
+    public function processGet()
     {
-        $this->set('get-data', $_GET);
-        $this->set('url-data', application::get('urlVars'));
-        $this->set('message', 'You requested to see detail');
+        input('get-data', $_GET);
+        input('url-data', application::get('urlVars'));
+        input('message', 'You requested to see detail');
     }
 
     public function post()
     {
-        $this->set('post-data', $_POST);
-        $this->set('url-data', application::get('urlVars'));
-        $this->set('message', 'You requested to create new');
+        input('post-data', $_POST);
+        input('url-data', application::get('urlVars'));
+        input('message', 'You requested to create new');
     }
 
     public function put()
     {
-        $this->set('post-data', $_POST);
-        $this->set('url-data', application::get('urlVars'));
-        $this->set('message', 'You requested to update an existing');
+        input('post-data', $_POST);
+        input('url-data', application::get('urlVars'));
+        input('message', 'You requested to update an existing');
     }
 
     public function delete()
     {
-        $this->set('url-data', application::get('urlVars'));
-        $this->set('message', 'You requested to delete');
+        input('url-data', application::get('urlVars'));
+        input('message', 'You requested to delete');
     }
 }

@@ -30,7 +30,7 @@ $router = Router::_(
     [ 
         'book/' => [
             'fnc'=> [
-                'get' => 'restapi.get',
+                'get' => 'restapi.processGet',
                 'post' => 'restapi.post',
                 'put' => 'restapi.put',
                 'delete' => 'restapi.delete',
@@ -54,6 +54,21 @@ $router = Router::_(
  * Theme
  */
 Theme::init('b4');
+
+/**
+ * Shortcut function
+ */
+
+function input($key, $value)
+{
+    application::data($key, $value, true);
+}
+
+function data($key, $default = null)
+{
+    return application::data($key, $default);
+}
+
 
 /**
  * Running application
