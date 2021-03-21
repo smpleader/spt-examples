@@ -8,7 +8,7 @@
  * 
  */
 
-namespace Examples\restapi\controllers;
+namespace Examples\restapi\models;
 
 defined( 'APP_PATH' ) or die('');
 
