@@ -1,7 +1,11 @@
 <?php defined( 'APP_PATH' ) or die('');
 
-use SPT\Theme;
+use Examples\theme\theme as Theme;
 use Examples\theme\application;
+
+Theme::add('https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js', '', 'jquery');
+Theme::add('https://cdn.jsdelivr.net/npm/foundation-sites@6.6.3/dist/css/foundation.min.css', '', 'foundation');
+Theme::add('https://cdn.jsdelivr.net/npm/foundation-sites@6.6.3/dist/js/foundation.min.js', 'jquery', 'foundation');
 
 Theme::addInline('js', 'console.log("hi")');
 

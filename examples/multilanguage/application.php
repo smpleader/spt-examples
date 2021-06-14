@@ -19,7 +19,7 @@ class application extends App
 {
     public static function execute($router){
 
-        $intruction = $router->pathFinding('home.default');
+        $intruction = $router->pathFinding('home.display');
 
         $fnc = '';
 

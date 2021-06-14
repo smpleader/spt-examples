@@ -1,9 +1,14 @@
 <?php defined( 'APP_PATH' ) or die('');
 
-use SPT\Theme;
+use Examples\theme\theme as Theme;
 use Examples\theme\application;
 
 Theme::addInline('js', 'console.log("hi")');
+
+Theme::add('https://code.jquery.com/jquery-2.1.1.min.js', '', 'jquery');
+Theme::add('https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css', '', 'materialize');
+Theme::add('https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js', 'jquery', 'materialize');
+
 
 ?>
 <!doctype html>

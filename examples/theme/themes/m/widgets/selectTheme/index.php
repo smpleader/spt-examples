@@ -10,12 +10,17 @@
 
 defined( 'APP_PATH' ) or die('');
 
-use SPT\Theme; 
+use Examples\theme\theme as Theme; 
 
 Theme::addInline('js', '
 $("#chooseTheme").change(function(){
     document.location.href="?theme="+$(this).val();
 })');
+
+
+Theme::addInline('css', '
+select#chooseTheme{display:block}
+');
 
 $arr = [
     'b4' => 'Bootstrap4',

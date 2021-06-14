@@ -16,25 +16,5 @@ use Examples\multilanguage\application;
 
 class home extends controller 
 {
-    public function test()
-    {
-        application::set('format', 'ajax');
-        $this->set('vars', 123456);
-    }
     
-    public function ajaxTest()
-    {
-        $this->set('vars', 0);
-    }
-
-    public function default()
-    {
-        application::set('layout', 'default');
-    }
-
-    public function debug()
-    {
-        application::set('format', '');
-        $this->set('vars', 'debug shown');
-    }
 }

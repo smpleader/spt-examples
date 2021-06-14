@@ -1,9 +1,13 @@
 <?php defined( 'APP_PATH' ) or die('');
 
-use SPT\Theme;
+use Examples\theme\theme as Theme;
 use Examples\theme\application;
 
 Theme::addInline('js', 'console.log("hi")');
+
+Theme::add('https://www.w3schools.com/w3css/4/w3.css', '', 'w3');
+Theme::add('https://code.jquery.com/jquery-2.1.1.min.js', '', 'jquery');
+
 
 ?>
 <!doctype html>

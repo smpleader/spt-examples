@@ -15,7 +15,7 @@ defined( 'APP_PATH' ) or die('');
 use SPT\BaseObj;
 use SPT\Util;
 use SPT\Log;
-use SPT\Theme;
+use Examples\theme\theme as Theme;
 use Examples\theme\application;
 
 class controller extends BaseObj 

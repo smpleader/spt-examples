@@ -11,10 +11,10 @@
 define( 'APP_PATH', __DIR__ . '/');
 
 require APP_PATH.'/../../vendor/autoload.php';
+require_once 'functions.php';
 
 use SPT\Config;
 use SPT\Router;
-use SPT\Theme;
 use Examples\restapi\application;
 
 Config::init(
@@ -47,28 +47,9 @@ $router = Router::_(
             'parameters' => ['id', 'uid']
         ],
         '' => ['fnc'=>'home.display', 'format'=> 'html'],
-    ]
-);
-
-/**
- * Theme
- */
-Theme::init('b4');
-
-/**
- * Shortcut function
- */
-
-function input($key, $value)
-{
-    application::data($key, $value, true);
-}
-
-function data($key, $default = null)
-{
-    return application::data($key, $default);
-}
-
+    ], 
+    Config::get( 'siteSubpath')
+); 
 
 /**
  * Running application

@@ -1,7 +1,12 @@
 <?php defined( 'APP_PATH' ) or die('');
 
-use SPT\Theme;
+use Examples\theme\theme as Theme;
 use Examples\theme\application;
+
+Theme::add('https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css', '', 'bootstrap');
+Theme::add('https://code.jquery.com/jquery-3.2.1.slim.min.js', '', 'jquery-3.2.1.slim');
+Theme::add('https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js', '', 'popper');
+Theme::add('https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js', '', 'bootstrap');
 
 Theme::addInline('js', 'console.log("Test addInline")');
 Theme::addInline('css', '

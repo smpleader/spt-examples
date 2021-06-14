@@ -15,7 +15,7 @@ defined( 'APP_PATH' ) or die('');
 use SPT\App;
 use SPT\Util;
 use SPT\Log;
-use SPT\Theme;
+use Examples\theme\theme as Theme;
 
 class application extends App 
 {

@@ -10,7 +10,7 @@
 
 defined( 'APP_PATH' ) or die('');
 
-use SPT\Theme;
+use Examples\theme\theme as Theme;
 
 Theme::addInline('js', '
 $("#chooseTheme").change(function(){

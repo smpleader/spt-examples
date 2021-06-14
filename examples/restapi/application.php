@@ -15,13 +15,12 @@ defined( 'APP_PATH' ) or die('');
 use SPT\App;
 use SPT\Util;
 use SPT\Log;
-use SPT\Theme;
 
 class application extends App 
 {
     public static function execute($router){
 
-        $intruction = $router->pathFinding('home.default');
+        $intruction = $router->pathFinding('home.display');
 
         $fnc = '';
 
@@ -101,9 +100,7 @@ class application extends App
                     $controller->displayHtml();
                     $body = ob_get_clean();
 
-                    self::set('body', $body);
-
-                    Theme::createPage();
+                    echo $body;
 
                     break;
                 case 'ajax':

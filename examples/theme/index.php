@@ -16,8 +16,8 @@ require APP_PATH.'/../../vendor/autoload.php';
 
 use SPT\Config;
 use SPT\Router;
-use SPT\Theme;
 use SPT\Util;
+use Examples\theme\theme;
 use Examples\theme\application;
 
 Config::init(
@@ -65,7 +65,8 @@ if( isset($_GET['theme']))
         application::session('theme', $theme, true);
     }
 }
-Theme::init($theme);
+
+define('THEME_PATH', APP_PATH. 'themes/'. $theme. '/' );
 
 /**
  * Running application

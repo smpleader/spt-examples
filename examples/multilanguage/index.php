@@ -27,12 +27,9 @@ Config::init(
  * Routing
  */
 $router = Router::_(
-    [
-        'test-json' => ['fnc'=>'home.testJson', 'format'=>'json'],
-        'test-ajax' => ['fnc'=>'home.test', 'format'=>'ajax'],
-        'test' => 'home.test', 
-        'debug' => 'home.debug', 
-        '' => ['fnc'=>'home.display', 'format'=> 'html'],
+    [ 
+        'default-page' => ['fnc'=>'home.display', 'layout' => 'default', 'format' => 'html'], 
+        '' => ['fnc'=>'home.display', 'layout' => 'home', 'format'=> 'html'],
     ]
 );
 
