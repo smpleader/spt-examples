@@ -8,6 +8,10 @@ SPT == Simple PHP Tools ;)
 
 - .. anything make you happy with simplest and miniumn of code lines to solve your matters
 
+I myself used this to train my students to understand the framework since the begin, after their lessons of language practise.
+
+Moreover, I used this to implement for the commercial products, especially the integration with other frameworks and platforms. Its small adapts any existing Api.
+
 When you are bored with packages, and love simply "include and run", let try this software.
 
 # SPT usage
