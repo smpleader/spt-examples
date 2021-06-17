@@ -58,7 +58,7 @@ When you are bored with packages, and love simply "include and run", let try thi
 
 9. Use Namespace and  PSR-4 ( done )
 
-10. Composer and spl_autoload_register ( private branch )
+10. Composer and spl_autoload_register ( done )
 
 11. Integrate as Joomla extensions ( private branch )
 
@@ -69,6 +69,8 @@ When you are bored with packages, and love simply "include and run", let try thi
 14.  CLI ( private branch )
 
 15.  Query builder and PDO wrapper to work with database: examples/database
+
+16. Implement DI container ( examples/dicontainer )
 
 
 # LICENCE

@@ -18,5 +18,6 @@
     <li><a href="restapi">restapi</a></li>
     <li><a href="router">router</a></li>
     <li><a href="theme">theme</a></li>
+    <li><a href="dicontainer">DI container ( Joomla ID )</a></li>
 </ul>
 
