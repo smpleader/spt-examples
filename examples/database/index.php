@@ -32,7 +32,8 @@ $router = Router::_(
         'add-db' => ['fnc'=>'home.add', 'format'=>'html'],
         'remove-db' => ['fnc'=>'home.remove', 'format'=>'html'],
         '' => ['fnc'=>'home.display', 'format'=> 'html'],
-    ]
+    ], 
+    Config::get( 'siteSubpath')
 );
 
 /**
