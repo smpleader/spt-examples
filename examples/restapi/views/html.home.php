@@ -11,8 +11,6 @@
 use SPT\Router;
 
 
-var_dump(Router::get('current'));
-
 ?>
 <h1>Rest API Demo Guide</h1>
 <p>Please use REST API Client to test End point:</p>
