@@ -32,7 +32,8 @@ $router = Router::_(
         'test-ajax' => ['fnc'=>'home.testAjax', 'format'=>'ajax'],
         'test' => 'home.test', 
         '' => ['fnc'=>'home.display', 'format'=> 'html'],
-    ]
+    ], 
+    Config::get( 'siteSubpath')
 );
 
 Log::add(

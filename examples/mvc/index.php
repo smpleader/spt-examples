@@ -32,7 +32,8 @@ $router = Router::_(
         'test' => 'home.test', 
         'debug' => 'home.debug', 
         '' => ['fnc'=>'home.display', 'format'=> 'html'],
-    ]
+    ], 
+    Config::get( 'siteSubpath')
 );
 
 /**

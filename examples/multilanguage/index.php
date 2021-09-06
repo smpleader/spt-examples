@@ -30,7 +30,8 @@ $router = Router::_(
     [ 
         'default-page' => ['fnc'=>'home.display', 'layout' => 'default', 'format' => 'html'], 
         '' => ['fnc'=>'home.display', 'layout' => 'home', 'format'=> 'html'],
-    ]
+    ], 
+    Config::get( 'siteSubpath')
 );
 
 /**
