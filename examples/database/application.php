@@ -13,6 +13,7 @@ defined( 'APP_PATH' ) or die('');
 
 use SPT\App;
 use SPT\Util;
+use SPT\Support\Token;
 
 class application extends App 
 {
@@ -52,7 +53,7 @@ class application extends App
             $controller = 'home';
         }
 
-        try{
+        try{ 
 
             $controllerName = '\Examples\database\controllers\\'.$controller;
             $controller = new $controllerName;
@@ -64,7 +65,7 @@ class application extends App
 
             if( self::token() === null )
             {
-                self::token([ Util::genToken(), strtotime('now') ]);
+                self::token([ Token::generate(), strtotime('now') ]);
             }
 
             $controller->$function();

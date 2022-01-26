@@ -21,7 +21,7 @@ class SimpleSession
     {
         if( null === App::token() )
         {
-            App::token([ Util::genToken(), strtotime('now') ]);
+            App::token([ Token::generate(), strtotime('now') ]);
         }
     }
 

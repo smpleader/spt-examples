@@ -13,6 +13,7 @@ namespace Examples\dicontainer\libraries\Core;
 defined( 'APP_PATH' ) or die('');
 
 use SPT\Util;
+use SPT\Support\Token;
 use Joomla\DI\Container;
 use Joomla\DI\ContainerAwareTrait;
 

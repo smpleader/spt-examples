@@ -86,7 +86,7 @@ class application extends App
 
             if( self::token() === null )
             {
-                self::token([ Util::genToken(), strtotime('now') ]);
+                self::token([ Token::generate(), strtotime('now') ]);
             }
 
             $controller->$function();
