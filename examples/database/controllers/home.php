@@ -14,7 +14,7 @@ defined( 'APP_PATH' ) or die('');
 
 use SPT\Util;
 use SPT\Query;
-use SPT\PdoWrapper;
+use SPT\Extend\Pdo as PdoWrapper;
 use Examples\database\application;
 use Examples\database\models\model; 
 
