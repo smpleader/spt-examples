@@ -15,17 +15,17 @@ require APP_PATH.'/../../vendor/autoload.php';
 use SPT\StaticObj;
 use SPT\Log;
 
-class Config extends StaticObj
+class Data extends StaticObj
 {
     protected static $_vars;
 }
 
 /**
- * Test Log, Config
+ * Test Log, Data
  */
 
 Log::set('key1', 123);
-Config::set('key2', 'something here'); 
+Data::set('key2', 'something here'); 
 
 $a = [1,2,3];
 $b = &$a;
@@ -33,7 +33,7 @@ $b[] = 5;
 
 Log::add(
     '<pre>',
-    Config::get('key2')
+    Data::get('key2')
     ,$a ,$b,
     '</pre>'
 );
