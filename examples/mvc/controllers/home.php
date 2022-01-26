@@ -13,7 +13,7 @@ namespace Examples\mvc\controllers;
 defined( 'APP_PATH' ) or die('');
 
 use Examples\mvc\models\model;
-use Examples\mvc\application;
+use Examples\mvc\libraries\application;
 
 class home extends controller 
 {

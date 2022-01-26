@@ -8,9 +8,7 @@
  * 
  */
 
-namespace Examples\mvc;
-
-defined( 'APP_PATH' ) or die('');
+namespace Examples\mvc\libraries; 
 
 use SPT\App;
 use SPT\Util;

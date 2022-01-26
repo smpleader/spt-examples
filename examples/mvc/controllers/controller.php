@@ -12,10 +12,9 @@ namespace Examples\mvc\controllers;
 
 defined( 'APP_PATH' ) or die('');
 
-use SPT\BaseObj; 
-use SPT\Config; 
+use SPT\BaseObj;  
 use SPT\Log; 
-use Examples\mvc\application;
+use Examples\mvc\libraries\application;
 
 class controller extends BaseObj 
 {

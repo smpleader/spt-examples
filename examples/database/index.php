@@ -11,12 +11,12 @@
 define( 'APP_PATH', __DIR__ . '/');
 
 require APP_PATH.'/../../vendor/autoload.php';
-
-use SPT\Config;
+ 
 use SPT\Router;
 use Examples\database\application;
+use Examples\database\config;
 
-Config::init(
+config::init(
     [
         'siteSubpath' => 'examples/database'
     ]
@@ -33,7 +33,7 @@ $router = Router::_(
         'remove-db' => ['fnc'=>'home.remove', 'format'=>'html'],
         '' => ['fnc'=>'home.display', 'format'=> 'html'],
     ], 
-    Config::get( 'siteSubpath')
+    config::get( 'siteSubpath')
 );
 
 /**

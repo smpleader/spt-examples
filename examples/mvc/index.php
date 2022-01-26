@@ -12,11 +12,11 @@ define( 'APP_PATH', __DIR__ . '/');
 
 require APP_PATH.'/../../vendor/autoload.php';
 
-use SPT\Config;
 use SPT\Router;
-use Examples\mvc\application;
+use Examples\mvc\libraries\application; 
+use Examples\mvc\libraries\config;
 
-Config::init(
+config::init(
     [
         'siteSubpath' => 'examples/mvc'
     ]
@@ -33,7 +33,7 @@ $router = Router::_(
         'debug' => 'home.debug', 
         '' => ['fnc'=>'home.display', 'format'=> 'html'],
     ], 
-    Config::get( 'siteSubpath')
+    config::get( 'siteSubpath')
 );
 
 /**

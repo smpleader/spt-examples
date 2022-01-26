@@ -12,10 +12,25 @@ define( 'APP_PATH', __DIR__ . '/');
 
 require APP_PATH.'/../../vendor/autoload.php';
 
-use SPT\Config;
+use SPT\StaticObj;
 use SPT\Router;
 use SPT\Log;
 
+class Config extends StaticObj
+{
+    protected static $_vars;
+
+    public static function init(array $vars)
+    {
+        foreach($vars as $key => $val)
+        {
+            if( !is_numeric($key) )
+            {
+                static::set($key, $val);
+            }
+        } 
+    }
+}
 
 Config::init(
     [
