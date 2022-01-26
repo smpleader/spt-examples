@@ -54,7 +54,7 @@ When you are bored with packages, and love simply "include and run", let try thi
 
 7. Implement JWT ( private branch )
 
-8. Implement Unit Test and Auto Test ( private branch )
+8. Implement Unit Test 
 
 9. Use Namespace and  PSR-4 ( done )
 
@@ -71,6 +71,8 @@ When you are bored with packages, and love simply "include and run", let try thi
 15.  Query builder and PDO wrapper to work with database: examples/database
 
 16. Implement DI container ( examples/dicontainer )
+
+17. Implement Auto Test 
 
 
 # LICENCE
