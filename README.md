@@ -74,6 +74,8 @@ When you are bored with packages, and love simply "include and run", let try thi
 
 17. Implement Auto Test 
 
+18. Take care all input from request ( examples/request )
+
 
 # LICENCE
 
