@@ -15,6 +15,7 @@ defined( 'APP_PATH' ) or die('');
 use SPT\Util;
 use SPT\Query;
 use SPT\Extend\Pdo as PdoWrapper;
+use Examples\database\entities\DemoEntity; 
 use Examples\database\application;
 use Examples\database\models\model; 
 
@@ -36,27 +37,19 @@ class home extends controller
         if($this->get('ready') === 1)
         {
             // connected, and not setup DB
-            $this->query->exec(
-                'DROP TABLE IF EXISTS `#__demo`;
-                CREATE TABLE `#__demo` (
-                  `id` int(10) unsigned NOT NULL AUTO_INCREMENT, 
-                  `title` varchar(255) COLLATE utf8mb4_unicode_520_ci DEFAULT NULL,
-                  `desc` text COLLATE utf8mb4_unicode_520_ci,
-                  PRIMARY KEY (`id`)
-                )'
-            );
-            $this->query->table('#__demo')->insert([
-                'title' => 'Title '. rand(1, 999),
-                'desc' => 'Bla bla bla.. '. rand(1, 999),
-            ]);
-            $this->query->table('#__demo')->insert([
-                'title' => 'Title '. rand(1, 999),
-                'desc' => 'Bla bla bla.. '. rand(1, 999),
-            ]);
-            $this->query->table('#__demo')->insert([
-                'title' => 'Title '. rand(1, 999),
-                'desc' => 'Bla bla bla.. '. rand(1, 999),
-            ]);
+            $check = $this->DemoEntity->checkAvailability();
+            if (!$check === false)
+            {
+                $data = $this->DemoEntity->autoGenerate(3); 
+                foreach ($data as $item) 
+                {
+                    $try = $this->DemoEntity->add((array) $item);
+                    if (!$try)
+                    {
+                        return false;
+                    }
+                }
+            }
         }
     }
 
@@ -78,6 +71,7 @@ class home extends controller
         $this->prepare();
         if($this->get('ready') > 1)
         {
+            $id = $this->DemoEntity->list(0, 1, [], 'id', 'id');
             $this->query->table('#__demo')->orderby('id')->limit(1)->delete();
             $this->set('msg', 'We removed a record');
         }
@@ -102,7 +96,7 @@ class home extends controller
         {
             $pdo = new PdoWrapper($db['host'], $db['username'], $db['passwd'], $db['database']);
             $this->query = new Query($pdo, ['#__'=>'test_']);
-            //
+            $this->DemoEntity = new DemoEntity($this->query);
             if($this->query->isConnected())
             {
                 $ping = $this->query->select('id')->table('#__demo')->row();
@@ -130,7 +124,7 @@ class home extends controller
 
         if($this->get('ready')>1)
         {
-           $list = $this->query->select('*')->table('#__demo')->list();
+           $list = $this->DemoEntity->list(0, 0);
         }
 
         $this->set('list', $list);
