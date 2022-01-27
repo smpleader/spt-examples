@@ -58,11 +58,16 @@ class home extends controller
         $this->prepare();
         if($this->get('ready') > 1)
         {
-            $this->query->table('#__demo')->insert([
-                'title' => 'Title '. rand(1, 999),
-                'desc' => 'Bla bla bla.. '. rand(1, 999),
-            ]);
-            $this->set('msg', 'We added a record');
+            $data = $this->DemoEntity->autoGenerate(1); 
+            $try = $this->DemoEntity->add((array) $data[0]);
+            if ($try)
+            {
+                $this->set('msg', 'We added a record');
+            }
+            else
+            {
+                $this->set('msg', 'Add fail');
+            }
         }
     }
 
@@ -72,8 +77,15 @@ class home extends controller
         if($this->get('ready') > 1)
         {
             $id = $this->DemoEntity->list(0, 1, [], 'id', 'id');
-            $this->query->table('#__demo')->orderby('id')->limit(1)->delete();
-            $this->set('msg', 'We removed a record');
+            $try = $this->DemoEntity->remove($id[0]['id']);
+            if ($try)
+            {
+                $this->set('msg', 'We removed a record');
+            }
+            else
+            {
+                $this->set('msg', 'Remove Fail');
+            }
         }
     }
 
@@ -96,11 +108,11 @@ class home extends controller
         {
             $pdo = new PdoWrapper($db['host'], $db['username'], $db['passwd'], $db['database']);
             $this->query = new Query($pdo, ['#__'=>'test_']);
-            $this->DemoEntity = new DemoEntity($this->query);
             if($this->query->isConnected())
             {
-                $ping = $this->query->select('id')->table('#__demo')->row();
-                $ready = (isset($ping['id']) && $ping['id']) ? 2 : 1;
+                $this->DemoEntity = new DemoEntity($this->query);
+                $ping = $this->DemoEntity->list(0,1);
+                $ready = (count($ping)) ? 2 : 1;
                 if($ready === 1)
                 {
                     $this->set('msg', 'Let click "Set sample data"');

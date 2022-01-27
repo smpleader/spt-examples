@@ -1,9 +1,11 @@
 <?php
 use PHPUnit\Framework\TestCase;
 use Examples\database\controllers\home;
+require_once __DIR__. '/../database/index.php';
 
 class DemoTest extends TestCase
 {
+    private $home;
     protected function setUp(): void
     {   
         $this->home = new home();
@@ -13,8 +15,19 @@ class DemoTest extends TestCase
         $_POST['database'] = 'demo';
     }
 
-    public function testAdd()
+    public function testUpdateDbInfo()
     {
-        $this->assertNotFalse(false);
+        $this->home->updateDbInfo();
+        $result = $_SESSION['dbInfo']; 
+        $this->assertNotFalse(count($result), 0);
+    }
+
+    /**
+     * @depends testUpdateDbInfo
+     */
+    public function testPrepare()
+    {
+        $this->home->prepare();
+        var_dump($this->home); die;
     }
 }
