@@ -13,7 +13,7 @@ define( 'APP_PATH', __DIR__ . '/');
 require APP_PATH.'/../../vendor/autoload.php';
 
 use SPT\StaticObj;
-use SPT\Router;
+use SPT\Route;
 use SPT\Log;
 
 class Config extends StaticObj
@@ -34,32 +34,35 @@ class Config extends StaticObj
 
 Config::init(
     [
-        'siteSubpath' => 'examples/router'
-    ]
+        'siteSubpath' => 'examples/router',
+        'endpoints' => [
+            'testA' => 'a.test', 
+            'test-ajax' => ['fnc'=>'home.testAjax', 'format'=>'ajax'],
+            'test' => 'home.test', 
+            '' => ['fnc'=>'home.display', 'format'=> 'html'],
+        ],
+    ],
+    
 );
 
 /**
- * Test Router
+ * Test Route
  */
-$router = Router::_(
-    [
-        'testA' => 'a.test', 
-        'test-ajax' => ['fnc'=>'home.testAjax', 'format'=>'ajax'],
-        'test' => 'home.test', 
-        '' => ['fnc'=>'home.display', 'format'=> 'html'],
-    ], 
+$route = new Route();
+$route->init(
+    Config::get('endpoints'), 
     Config::get( 'siteSubpath')
 );
 
 Log::add(
-    "\n<h1>Router ready:</h1> <pre> \n",
-    Router::getVars(),
+    "\n<h1>Route ready:</h1> <pre> \n",
+    $route->get('sitemap'),
     '</pre>'
 );
 
 Log::add(
     "\n<h1>Task found:</h1> <pre> \n",
-    $router->pathFinding('default.display'),
+    $route->pathFinding('default.display'),
     '</pre>'
 );
 
