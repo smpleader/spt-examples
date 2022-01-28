@@ -24,7 +24,7 @@
 /vendor
 
 # Test Related Files #
-/phpunit.xml
+/.phpunit.result.cache
 
 # Stubs file holding mapped classes
 /stubs.php

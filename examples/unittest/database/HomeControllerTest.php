@@ -1,7 +1,7 @@
 <?php
 use PHPUnit\Framework\TestCase;
 use Examples\database\controllers\home;
-require_once __DIR__. '/../database/index.php';
+require_once __DIR__. '/../../database/index.php';
 
 class HomeControllerTest extends TestCase
 {
