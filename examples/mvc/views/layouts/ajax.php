@@ -8,6 +8,7 @@
  * 
  */
 
-echo 'Ajax load here';
+echo 'Ajax load here. And here is the variable set in controller:';
 echo '<pre>';
-var_dump($this->get('vars'));
+var_dump($this->vars);
+echo '</pre>';

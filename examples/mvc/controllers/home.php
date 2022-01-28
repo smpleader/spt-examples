@@ -20,28 +20,30 @@ class home extends Controller
 {
     public function test()
     {
-        $this->app->set('format', 'ajax');
-        $this->set('vars', 123456);
+        echo 'This is a base process: echo a sentence.';
     }
 
     public function testJson()
     {
-        $this->set('vars', 'it works');
+        $this->set('vars', 'It works');
+        $this->set('more_vars', 'We set this in the controller');
     }
 
-    public function ajaxTest()
+    public function testAjax()
     {
-        $this->set('vars', 0);
+        $this->set('vars', 12323345);
+        $this->app->set('layout', 'ajax');
+    }
+
+    public function display()
+    {
+        $this->app->set('format', 'html');
+        $this->app->set('layout', 'home');
     }
 
     public function default()
     {
+        $this->app->set('format', 'html');
         $this->app->set('layout', 'default');
-    }
-
-    public function debug()
-    {
-        $this->app->set('format', '');
-        $this->set('vars', 'debug shown');
     }
 }
