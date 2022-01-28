@@ -12,31 +12,16 @@ define( 'APP_PATH', __DIR__ . '/');
 
 require APP_PATH.'/../../vendor/autoload.php';
 
-use SPT\Router;
-use Examples\mvc\libraries\application; 
-use Examples\mvc\libraries\config;
-
-config::init(
-    [
-        'siteSubpath' => 'examples/mvc'
-    ]
-);
-
-/**
- * Routing
- */
-$router = Router::_(
-    [
-        'test-json' => ['fnc'=>'home.testJson', 'format'=>'json'],
-        'test-ajax' => ['fnc'=>'home.test', 'format'=>'ajax'],
-        'test' => 'home.test', 
-        'debug' => 'home.debug', 
-        '' => ['fnc'=>'home.display', 'format'=> 'html'],
-    ], 
-    config::get( 'siteSubpath')
-);
+use SPT\App\Instance as AppIns;
+use Examples\mvc\libraries\appMvc;
 
 /**
  * Running application
  */
-application::execute($router);
+AppIns::bootstrap( new appMvc(),[
+    'app' => APP_PATH,
+    'config' => APP_PATH. 'config.php',
+    'view' => APP_PATH. 'views/', 
+]);
+
+AppIns::main()->execute();

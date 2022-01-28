@@ -14,12 +14,13 @@ defined( 'APP_PATH' ) or die('');
 
 use Examples\mvc\models\model;
 use Examples\mvc\libraries\application;
+use SPT\MVC\DI\Controller;
 
-class home extends controller 
+class home extends Controller 
 {
     public function test()
     {
-        application::set('format', 'ajax');
+        $this->app->set('format', 'ajax');
         $this->set('vars', 123456);
     }
 
@@ -35,12 +36,12 @@ class home extends controller
 
     public function default()
     {
-        application::set('layout', 'default');
+        $this->app->set('layout', 'default');
     }
 
     public function debug()
     {
-        application::set('format', '');
+        $this->app->set('format', '');
         $this->set('vars', 'debug shown');
     }
 }
