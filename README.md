@@ -46,7 +46,7 @@ When you are bored with packages, and love simply "include and run", let try thi
 
 3. MVC pattern: examples/mvc
 
-4. Format and theme: examples/theme ( TODO: support Theme add Js at anyplace )
+4. Format and theme: examples/theme ( private branch )
 
 5. Multi lanugage: examples/multilanguage
 
