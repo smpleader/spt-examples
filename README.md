@@ -44,17 +44,17 @@ When you are bored with packages, and love simply "include and run", let try thi
 
 2. Simple route: examples/router
 
-3. MVC pattern: examples/mvc
+3. Simple route: examples/router
 
-4. Format and theme: examples/theme ( private branch )
+4. MVC pattern: examples/mvc
 
-5. Multi lanugage: examples/multilanguage
+5. Format and theme: examples/theme ( private branch )
 
-6. Rest API: examples/restapi
+6. Multi lanugage: examples/multilanguage
 
-7. Implement JWT ( private branch )
+7. Rest API: examples/restapi
 
-8. Implement Unit Test 
+8. Implement JWT ( private branch )
 
 9. Use Namespace and  PSR-4 ( done )
 
@@ -75,6 +75,8 @@ When you are bored with packages, and love simply "include and run", let try thi
 17. Implement Auto Test 
 
 18. Take care all input from request ( examples/request )
+
+19. Implement Unit Test 
 
 
 # LICENCE
